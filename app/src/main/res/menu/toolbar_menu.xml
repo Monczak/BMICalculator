@@ -2,10 +2,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
+        android:id="@+id/switchUnitsMenuItem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:title="@string/switch_units_imperial_menuitem" />
     <item
+        android:id="@+id/historyMenuItem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:title="@string/view_history_menuitem" />

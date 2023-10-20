@@ -7,7 +7,7 @@
     <string name="weight_metric_unit">kg</string>
     <string name="height_metric_unit">cm</string>
     <string name="weight_imperial_unit">lbs</string>
-    <string name="height_imperial_unit">ft</string>
+    <string name="height_imperial_unit">in</string>
 
     <string name="calculate_bmi_button_text">Calculate BMI</string>
 

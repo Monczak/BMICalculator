@@ -17,6 +17,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:menu="@menu/toolbar_menu"
+        app:title="@string/app_name"
         app:titleTextColor="@color/lightText" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -108,7 +109,29 @@
             app:layout_constraintBottom_toTopOf="@+id/calculateButtonLayout"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/heightInputLayout"/>
+            app:layout_constraintTop_toBottomOf="@+id/heightInputLayout">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="0dp"
+                android:layout_height="200dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/bmiValueText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="20.0"
+                    android:textAlignment="center"
+                    android:textSize="96sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/calculateButtonLayout"

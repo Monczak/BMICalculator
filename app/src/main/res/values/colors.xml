@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="white">#ffffff</color>
 
-    <color name="darkText">#ff121212</color>
-    <color name="lightText">#ffe8e8e8</color>
+    <color name="darkText">#121212</color>
+    <color name="lightText">#e8e8e8</color>
 
-    <color name="primary">#ff0f802d</color>
+    <color name="primary">#0f802d</color>
+
+    <color name="bmiUnderweight">#3F51B5</color>
+    <color name="bmiNormal">#4CAF50</color>
+    <color name="bmiOverweight">#FF5722</color>
+    <color name="bmiObese">#E91E1E</color>
+
 </resources>
