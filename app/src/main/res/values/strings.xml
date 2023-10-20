@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">BMI Calculator</string>
+
+    <string name="weight_input_label">Weight</string>
+    <string name="height_input_label">Height</string>
+
+    <string name="weight_metric_unit">kg</string>
+    <string name="height_metric_unit">cm</string>
+    <string name="weight_imperial_unit">lbs</string>
+    <string name="height_imperial_unit">ft</string>
+
+    <string name="calculate_bmi_button_text">Calculate BMI</string>
+
+    <string name="switch_units_metric_menuitem">Switch to metric units</string>
+    <string name="switch_units_imperial_menuitem">Switch to imperial units</string>
+    <string name="view_history_menuitem">History</string>
+</resources>
