@@ -1,7 +1,5 @@
 package edu.pwr.s266867.bmicalculator
 
-import android.graphics.Color
-
 object BmiCalculator {
     fun calculateBmi(weightKg: Double, heightCm: Double): Double
         = weightKg / ((heightCm / 100) * (heightCm / 100))

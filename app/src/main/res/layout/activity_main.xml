@@ -42,26 +42,27 @@
 
             <EditText
                 android:id="@+id/weightInput"
-                android:layout_width="333dp"
-                android:layout_height="58dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:autofillHints=""
                 android:ems="10"
                 android:hint="@string/weight_input_label"
                 android:inputType="numberDecimal"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/weightInputUnitText"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:autofillHints="" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/weightInputUnitText"
-                android:layout_width="0dp"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/weight_metric_unit"
                 android:textAlignment="center"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/weightInput"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -77,26 +78,26 @@
 
             <EditText
                 android:id="@+id/heightInput"
-                android:layout_width="333dp"
-                android:layout_height="58dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:autofillHints=""
                 android:ems="10"
                 android:hint="@string/height_input_label"
                 android:inputType="numberDecimal"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/heightInputUnitText"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:autofillHints="" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/heightInputUnitText"
-                android:layout_width="0dp"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/height_metric_unit"
                 android:textAlignment="center"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/heightInput"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -113,7 +114,7 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="0dp"
-                android:layout_height="200dp"
+                android:layout_height="0dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -122,10 +123,12 @@
                 <TextView
                     android:id="@+id/bmiValueText"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="0dp"
+                    android:autoSizeMaxTextSize="96sp"
+                    android:autoSizeTextType="uniform"
+                    android:gravity="center"
                     android:text="20.0"
                     android:textAlignment="center"
-                    android:textSize="96sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -136,7 +139,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/calculateButtonLayout"
             android:layout_width="0dp"
-            android:layout_height="120dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="1dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="1dp"
@@ -149,7 +152,6 @@
                 android:id="@+id/calculateButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
                 android:text="@string/calculate_bmi_button_text"
                 android:textColor="@color/lightText"
                 app:layout_constraintEnd_toEndOf="parent"

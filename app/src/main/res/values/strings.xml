@@ -14,4 +14,7 @@
     <string name="switch_units_metric_menuitem">Switch to metric units</string>
     <string name="switch_units_imperial_menuitem">Switch to imperial units</string>
     <string name="view_history_menuitem">History</string>
+
+    <string name="invalid_weight">Invalid weight</string>
+    <string name="invalid_height">Invalid height</string>
 </resources>
