@@ -1,5 +1,6 @@
 package edu.pwr.s266867.bmicalculator
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -7,37 +8,33 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 
 class BmiViewModel : ViewModel() {
-    private val _uiState = MutableStateFlow(BmiUiState())
-    val uiState: StateFlow<BmiUiState> = _uiState.asStateFlow()
+    val weight: MutableLiveData<Double> by lazy { MutableLiveData<Double>() }
+    val height: MutableLiveData<Double> by lazy { MutableLiveData<Double>() }
+    val units: MutableLiveData<Units> by lazy { MutableLiveData<Units>() }
+    val bmi: MutableLiveData<Double> by lazy { MutableLiveData<Double>() }
 
-    fun updateWeight(weight: Double) {
-        _uiState.update { currentState ->
-            currentState.copy(
-                weight = weight,
-            )
-        }
-    }
-
-    fun updateHeight(height: Double) {
-        _uiState.update { currentState ->
-            currentState.copy(
-                height = height,
-            )
-        }
+    private fun tryConvert(data: MutableLiveData<Double>, measurement: Measurement, fromUnits: Units?, toUnits: Units?) {
+        if (data.value != null && fromUnits != null && toUnits != null)
+            data.value = data.value!! * UnitConverter.getConversion(measurement, fromUnits, toUnits)
     }
 
     fun switchUnits() {
-        _uiState.update { currentState ->
-            currentState.copy(
-                units = if (currentState.units == Units.METRIC) Units.IMPERIAL else Units.METRIC
-            )
+        val oldUnits = units.value
+
+        units.value = when (units.value) {
+            Units.METRIC -> Units.IMPERIAL
+            Units.IMPERIAL -> Units.METRIC
+            else -> Units.METRIC
         }
+
+        tryConvert(weight, Measurement.WEIGHT, oldUnits, units.value)
+        tryConvert(height, Measurement.HEIGHT, oldUnits, units.value)
     }
 
-    val units: Units get() = _uiState.value.units
-    val bmi: Double? get() =
-        if (_uiState.value.weight == null || _uiState.value.height == null)
-            null
-        else
-            BmiCalculator.calculateBmi(_uiState.value.weight!!, _uiState.value.height!!)
+    fun calculateBmi() {
+        if (weight.value != null && height.value != null)
+            bmi.value = BmiCalculator.calculateBmi(
+                weight.value!! * UnitConverter.getConversion(Measurement.WEIGHT, units.value!!, Units.METRIC),
+                height.value!! * UnitConverter.getConversion(Measurement.HEIGHT, units.value!!, Units.METRIC), )
+    }
 }

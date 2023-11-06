@@ -8,4 +8,11 @@ object Util {
         repeat(decimals) { multiplier *= 10 }
         return (this * multiplier).roundToInt() / multiplier
     }
+
+    fun validateDouble(text: String, validator: (Double) -> Boolean): Pair<Boolean, Double?> {
+        val textValue: Double = text.toDoubleOrNull() ?: return Pair(false, null)
+
+        val valid: Boolean = validator(textValue)
+        return Pair(valid, if (valid) textValue else null)
+    }
 }
