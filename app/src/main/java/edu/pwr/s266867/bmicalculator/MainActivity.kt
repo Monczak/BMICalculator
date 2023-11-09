@@ -7,6 +7,7 @@ package edu.pwr.s266867.bmicalculator
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.Gravity
 import android.view.Menu
 import android.view.MenuItem
@@ -32,6 +33,8 @@ class MainActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this)[BmiViewModel::class.java]
 
         setupUI()
+
+        Thread { AppDatabase.getDatabase(this).calculationEntryDao().clear() }.start()
     }
 
     private fun setupUI() {
@@ -96,8 +99,11 @@ class MainActivity : AppCompatActivity() {
             else
                 showToast(getText(R.string.invalid_height))
 
-            if (weightInputValid && heightInputValid)
+            if (weightInputValid && heightInputValid) {
                 viewModel.calculateBmi()
+
+                Thread { viewModel.updateDatabase(this) }.start()
+            }
         }
 
         findViewById<TextView>(R.id.bmiValueText).setOnClickListener {
@@ -129,6 +135,10 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.switchUnitsMenuItem -> viewModel.switchUnits()
+            R.id.historyMenuItem -> {
+                val intent = Intent(this, HistoryActivity::class.java)
+                startActivity(intent)
+            }
         }
         return true
     }

@@ -25,10 +25,10 @@ class BmiDetailsActivity : AppCompatActivity() {
     )
 
     private val bmiTipsTextMap = mapOf(
-        BmiCategory.NORMAL to listOf(R.string.bmi_normal_tip1, R.string.bmi_normal_tip2, R.string.bmi_normal_tip3),
-        BmiCategory.OVERWEIGHT to listOf(R.string.bmi_overweight_tip1, R.string.bmi_overweight_tip2, R.string.bmi_overweight_tip3),
-        BmiCategory.OBESE to listOf(R.string.bmi_obese_tip1, R.string.bmi_obese_tip2, R.string.bmi_obese_tip3),
-        BmiCategory.UNDERWEIGHT to listOf(R.string.bmi_underweight_tip1, R.string.bmi_underweight_tip2, R.string.bmi_underweight_tip3),
+        BmiCategory.NORMAL to arrayOf(R.string.bmi_normal_tip1, R.string.bmi_normal_tip2, R.string.bmi_normal_tip3),
+        BmiCategory.OVERWEIGHT to arrayOf(R.string.bmi_overweight_tip1, R.string.bmi_overweight_tip2, R.string.bmi_overweight_tip3),
+        BmiCategory.OBESE to arrayOf(R.string.bmi_obese_tip1, R.string.bmi_obese_tip2, R.string.bmi_obese_tip3),
+        BmiCategory.UNDERWEIGHT to arrayOf(R.string.bmi_underweight_tip1, R.string.bmi_underweight_tip2, R.string.bmi_underweight_tip3),
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -57,7 +57,7 @@ class BmiDetailsActivity : AppCompatActivity() {
         setupDetails(category)
     }
 
-    private fun setupDetails(category: BmiCategory) {
+    private fun setupDetails(category: BmiCategory?) {
         val detailsText = findViewById<TextView>(R.id.bmiDetails)
         val tipText1 = findViewById<TextView>(R.id.bmiTip1)
         val tipText2 = findViewById<TextView>(R.id.bmiTip2)

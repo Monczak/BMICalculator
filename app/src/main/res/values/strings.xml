@@ -2,6 +2,7 @@
     <string name="app_name">BMI Calculator</string>
 
     <string name="details_view_title">Details</string>
+    <string name="history_view_title">History</string>
 
     <string name="weight_input_label">Weight</string>
     <string name="height_input_label">Height</string>

@@ -1,12 +1,10 @@
 package edu.pwr.s266867.bmicalculator
 
+import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import edu.pwr.s266867.bmicalculator.Util.roundToDecimal
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.update
+import java.util.Calendar
 
 class BmiViewModel : ViewModel() {
     val weight: MutableLiveData<Double> by lazy { MutableLiveData<Double>() }
@@ -33,9 +31,27 @@ class BmiViewModel : ViewModel() {
     }
 
     fun calculateBmi() {
-        if (weight.value != null && height.value != null && units.value != null)
+        if (weight.value != null && height.value != null && units.value != null) {
             bmi.value = BmiCalculator.calculateBmi(
                 weight.value!! * UnitConverter.getConversion(Measurement.WEIGHT, units.value!!, Units.METRIC),
-                height.value!! * UnitConverter.getConversion(Measurement.HEIGHT, units.value!!, Units.METRIC), )
+                height.value!! * UnitConverter.getConversion(Measurement.HEIGHT, units.value!!, Units.METRIC))
+        }
+    }
+
+    fun updateDatabase(context: Context) {
+        if (weight.value != null && height.value != null && units.value != null && bmi.value != null) {
+            val dao = AppDatabase.getDatabase(context).calculationEntryDao()
+            val entry = BmiEntry(
+                weight = weight.value!! * UnitConverter.getConversion(Measurement.WEIGHT, units.value!!, Units.METRIC),
+                height = height.value!! * UnitConverter.getConversion(Measurement.HEIGHT, units.value!!, Units.METRIC),
+                bmi = bmi.value!!,
+                date = Calendar.getInstance().time.time
+            )
+            dao.insert(entry)
+        }
+    }
+
+    fun retrieveRecentEntries(context: Context, limit: Int = 10): Array<BmiEntry> {
+        return AppDatabase.getDatabase(context).calculationEntryDao().getRecentEntries(limit)
     }
 }
