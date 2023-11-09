@@ -4,6 +4,7 @@
 
 package edu.pwr.s266867.bmicalculator
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Gravity
@@ -22,11 +23,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var viewModel: BmiViewModel
 
     private val defaultUnits: Units = Units.METRIC
-    private val minWeight: Double = 10.0
-    private val maxWeight: Double = 200.0
-    private val minHeight: Double = 50.0
-    private val maxHeight: Double = 300.0
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -69,9 +65,13 @@ class MainActivity : AppCompatActivity() {
             )
         }
 
-        val bmiObserver = Observer<Double> { newBmi ->
-            bmiText.text = "%.1f".format(newBmi.roundToDecimal(1))
-            bmiText.setTextColor(getColor(BmiCalculator.getBmiColor(newBmi)))
+        val bmiObserver = Observer<Double?> { newBmi ->
+            if (newBmi == null)
+                bmiText.text = ""
+            else {
+                bmiText.text = "%.1f".format(newBmi.roundToDecimal(1))
+                bmiText.setTextColor(getColor(BmiCalculator.getBmiColor(newBmi)))
+            }
         }
 
         viewModel.weight.observe(this, weightObserver)
@@ -80,11 +80,11 @@ class MainActivity : AppCompatActivity() {
         viewModel.bmi.observe(this, bmiObserver)
 
         viewModel.units.value = defaultUnits
+        viewModel.bmi.value = null
 
-        val calculateButton = findViewById<Button>(R.id.calculateButton)
-        calculateButton.setOnClickListener {
-            val (weightInputValid, weightInput) = Util.validateDouble(weightInputField.text.toString()) { input -> input > minWeight && input < maxWeight }
-            val (heightInputValid, heightInput) = Util.validateDouble(heightInputField.text.toString()) { input -> input > minHeight && input < maxHeight }
+        findViewById<Button>(R.id.calculateButton).setOnClickListener {
+            val (weightInputValid, weightInput) = Util.validateDouble(weightInputField.text.toString()) { input -> input > 0 }
+            val (heightInputValid, heightInput) = Util.validateDouble(heightInputField.text.toString()) { input -> input > 0 }
 
             if (weightInputValid)
                 viewModel.weight.value = weightInput
@@ -96,7 +96,16 @@ class MainActivity : AppCompatActivity() {
             else
                 showToast(getText(R.string.invalid_height))
 
-            viewModel.calculateBmi()
+            if (weightInputValid && heightInputValid)
+                viewModel.calculateBmi()
+        }
+
+        findViewById<TextView>(R.id.bmiValueText).setOnClickListener {
+            if (viewModel.bmi.value != null) {
+                val intent = Intent(this, BmiDetailsActivity::class.java)
+                intent.putExtra("bmi", viewModel.bmi.value)
+                startActivity(intent)
+            }
         }
     }
 

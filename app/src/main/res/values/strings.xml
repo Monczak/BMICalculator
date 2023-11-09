@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">BMI Calculator</string>
 
+    <string name="details_view_title">Details</string>
+
     <string name="weight_input_label">Weight</string>
     <string name="height_input_label">Height</string>
 
@@ -17,4 +19,33 @@
 
     <string name="invalid_weight">Invalid weight</string>
     <string name="invalid_height">Invalid height</string>
+
+    <string name="bmi_category_normal">Normal</string>
+    <string name="bmi_category_overweight">Overweight</string>
+    <string name="bmi_category_obese">Obese</string>
+    <string name="bmi_category_underweight">Underweight</string>
+
+    <string name="bmi_tips_header">Tips</string>
+
+    <string name="bmi_underweight_details">Being underweight can indicate a lack of essential nutrients and may lead to weakened immunity and muscle loss.</string>
+    <string name="bmi_underweight_tip1">Consult a healthcare professional for guidance on a balanced diet tailored to your needs.</string>
+    <string name="bmi_underweight_tip2">Incorporate strength training exercises to build muscle mass.</string>
+    <string name="bmi_underweight_tip3">Aim for regular meals and snacks to increase calorie intake in a healthy way.</string>
+
+    <string name="bmi_normal_details">Congratulations! You\'re in a healthy weight range, which lowers the risk of various health issues.</string>
+    <string name="bmi_normal_tip1">Maintain your balanced diet and exercise routine to stay in this category.</string>
+    <string name="bmi_normal_tip2">Continue monitoring your health with regular check-ups.</string>
+    <string name="bmi_normal_tip3">Focus on maintaining a healthy lifestyle that includes physical activity and a nutritious diet.</string>
+
+    <string name="bmi_overweight_details">Being overweight increases the risk of health problems such as heart disease, diabetes, and high blood pressure.</string>
+    <string name="bmi_overweight_tip1">Gradually incorporate healthier eating habits and portion control.</string>
+    <string name="bmi_overweight_tip2">Engage in regular physical activity to aid weight loss and improve overall health.</string>
+    <string name="bmi_overweight_tip3">Seek support from a registered dietitian or healthcare professional for personalized advice.</string>
+
+    <string name="bmi_obese_details">Obesity is associated with severe health risks, including increased chances of heart disease, stroke, and certain cancers.</string>
+    <string name="bmi_obese_tip1">Consult a healthcare provider for a comprehensive weight management plan.</string>
+    <string name="bmi_obese_tip2">Focus on reducing calorie intake and increasing physical activity.</string>
+    <string name="bmi_obese_tip3">Consider support groups or counseling to address emotional aspects of weight management.</string>
+
+    <string name="unknown">\?</string>
 </resources>

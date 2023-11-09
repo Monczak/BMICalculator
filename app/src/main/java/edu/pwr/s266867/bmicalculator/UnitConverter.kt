@@ -18,5 +18,4 @@ object UnitConverter {
             else -> throw IllegalArgumentException("Unknown conversion")
         }
     }
-
 }

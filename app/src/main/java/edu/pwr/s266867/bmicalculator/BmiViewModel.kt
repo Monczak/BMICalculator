@@ -2,6 +2,7 @@ package edu.pwr.s266867.bmicalculator
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import edu.pwr.s266867.bmicalculator.Util.roundToDecimal
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -11,11 +12,11 @@ class BmiViewModel : ViewModel() {
     val weight: MutableLiveData<Double> by lazy { MutableLiveData<Double>() }
     val height: MutableLiveData<Double> by lazy { MutableLiveData<Double>() }
     val units: MutableLiveData<Units> by lazy { MutableLiveData<Units>() }
-    val bmi: MutableLiveData<Double> by lazy { MutableLiveData<Double>() }
+    val bmi: MutableLiveData<Double?> by lazy { MutableLiveData<Double?>() }
 
     private fun tryConvert(data: MutableLiveData<Double>, measurement: Measurement, fromUnits: Units?, toUnits: Units?) {
         if (data.value != null && fromUnits != null && toUnits != null)
-            data.value = data.value!! * UnitConverter.getConversion(measurement, fromUnits, toUnits)
+            data.value = (data.value!! * UnitConverter.getConversion(measurement, fromUnits, toUnits)).roundToDecimal(1)
     }
 
     fun switchUnits() {
@@ -32,7 +33,7 @@ class BmiViewModel : ViewModel() {
     }
 
     fun calculateBmi() {
-        if (weight.value != null && height.value != null)
+        if (weight.value != null && height.value != null && units.value != null)
             bmi.value = BmiCalculator.calculateBmi(
                 weight.value!! * UnitConverter.getConversion(Measurement.WEIGHT, units.value!!, Units.METRIC),
                 height.value!! * UnitConverter.getConversion(Measurement.HEIGHT, units.value!!, Units.METRIC), )
