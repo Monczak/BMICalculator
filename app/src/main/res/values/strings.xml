@@ -3,6 +3,7 @@
 
     <string name="details_view_title">Details</string>
     <string name="history_view_title">History</string>
+    <string name="about_me_view_title">About the author</string>
 
     <string name="weight_input_label">Weight</string>
     <string name="height_input_label">Height</string>
@@ -17,6 +18,7 @@
     <string name="switch_units_metric_menuitem">Switch to metric units</string>
     <string name="switch_units_imperial_menuitem">Switch to imperial units</string>
     <string name="view_history_menuitem">History</string>
+    <string name="about_me_menuitem">About the author</string>
 
     <string name="invalid_weight">Invalid weight</string>
     <string name="invalid_height">Invalid height</string>

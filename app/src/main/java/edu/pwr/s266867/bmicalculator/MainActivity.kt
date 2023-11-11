@@ -139,6 +139,10 @@ class MainActivity : AppCompatActivity() {
                 val intent = Intent(this, HistoryActivity::class.java)
                 startActivity(intent)
             }
+            R.id.aboutMeMenuItem -> {
+                val intent = Intent(this, AboutMeActivity::class.java)
+                startActivity(intent)
+            }
         }
         return true
     }
