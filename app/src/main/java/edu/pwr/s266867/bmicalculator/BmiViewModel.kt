@@ -21,6 +21,10 @@ class BmiViewModel(application: Application) : AndroidViewModel(application) {
 
     private val dataStore = UserPreferencesRepository(application)
 
+    init {
+        bmi.value = null
+    }
+
     private fun tryConvert(data: MutableLiveData<Double>, measurement: Measurement, fromUnits: Units?, toUnits: Units?) {
         if (data.value != null && fromUnits != null && toUnits != null)
             data.value = (data.value!! * UnitConverter.getConversion(measurement, fromUnits, toUnits)).roundToDecimal(1)

@@ -83,8 +83,6 @@ class MainActivity : AppCompatActivity() {
             viewModel.units.value = units
         }
 
-        viewModel.bmi.value = null
-
         findViewById<Button>(R.id.calculateButton).setOnClickListener {
             val (weightInputValid, weightInput) = Util.validateDouble(weightInputField.text.toString()) { input -> input > 0 }
             val (heightInputValid, heightInput) = Util.validateDouble(heightInputField.text.toString()) { input -> input > 0 }
