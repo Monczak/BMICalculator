@@ -24,12 +24,7 @@ class BmiDetailsActivity : AppCompatActivity() {
         BmiCategory.UNDERWEIGHT to R.string.bmi_underweight_details,
     )
 
-    private val bmiTipsTextMap = mapOf(
-        BmiCategory.NORMAL to arrayOf(R.string.bmi_normal_tip1, R.string.bmi_normal_tip2, R.string.bmi_normal_tip3),
-        BmiCategory.OVERWEIGHT to arrayOf(R.string.bmi_overweight_tip1, R.string.bmi_overweight_tip2, R.string.bmi_overweight_tip3),
-        BmiCategory.OBESE to arrayOf(R.string.bmi_obese_tip1, R.string.bmi_obese_tip2, R.string.bmi_obese_tip3),
-        BmiCategory.UNDERWEIGHT to arrayOf(R.string.bmi_underweight_tip1, R.string.bmi_underweight_tip2, R.string.bmi_underweight_tip3),
-    )
+    private lateinit var bmiTipsTextMap: Map<BmiCategory, Array<String>>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,6 +34,13 @@ class BmiDetailsActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
+
+        bmiTipsTextMap = mapOf(
+            BmiCategory.NORMAL to resources.getStringArray(R.array.bmi_normal_tips),
+            BmiCategory.OVERWEIGHT to resources.getStringArray(R.array.bmi_overweight_tips),
+            BmiCategory.OBESE to resources.getStringArray(R.array.bmi_obese_tips),
+            BmiCategory.UNDERWEIGHT to resources.getStringArray(R.array.bmi_underweight_tips),
+        )
 
         setupUI()
     }
@@ -66,9 +68,9 @@ class BmiDetailsActivity : AppCompatActivity() {
         detailsText.text = getText(bmiDetailsTextMap.getOrDefault(category, R.string.unknown))
 
         val tips = bmiTipsTextMap[category]
-        tipText1.text = getText(tips?.get(0) ?: R.string.unknown)
-        tipText2.text = getText(tips?.get(1) ?: R.string.unknown)
-        tipText3.text = getText(tips?.get(2) ?: R.string.unknown)
+        tipText1.text = tips?.get(0) ?: getText(R.string.unknown)
+        tipText2.text = tips?.get(1) ?: getText(R.string.unknown)
+        tipText3.text = tips?.get(2) ?: getText(R.string.unknown)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

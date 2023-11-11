@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity() {
 
         setupUI()
 
-        Thread { AppDatabase.getDatabase(this).calculationEntryDao().clear() }.start()
+        // Thread { AppDatabase.getDatabase(this).calculationEntryDao().clear() }.start()
     }
 
     private fun setupUI() {
@@ -137,6 +137,7 @@ class MainActivity : AppCompatActivity() {
             R.id.switchUnitsMenuItem -> viewModel.switchUnits()
             R.id.historyMenuItem -> {
                 val intent = Intent(this, HistoryActivity::class.java)
+                intent.putExtra("units", viewModel.units.value.toString())
                 startActivity(intent)
             }
             R.id.aboutMeMenuItem -> {

@@ -1,6 +1,7 @@
 package edu.pwr.s266867.bmicalculator
 
 import android.content.Context
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import edu.pwr.s266867.bmicalculator.Util.roundToDecimal
@@ -48,6 +49,7 @@ class BmiViewModel : ViewModel() {
                 date = Calendar.getInstance().time.time
             )
             dao.insert(entry)
+            Log.d("DEBUG", "Inserted 1 record")
         }
     }
 
