@@ -61,7 +61,6 @@ class BmiViewModel(application: Application) : AndroidViewModel(application) {
                 date = Calendar.getInstance().time.time
             )
             dao.insert(entry)
-            Log.d("DEBUG", "Inserted 1 record")
         }
     }
 }

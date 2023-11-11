@@ -58,5 +58,14 @@
         <item>Consider support groups or counseling to address emotional aspects of weight management.</item>
     </string-array>
 
+    <string name="about_intro">Hi! I\'m Monczak.</string>
+    <string name="about_paragraph1">I\'m a passionate software and game developer, currently studying Applied Computer Science at Wroclaw University of Technology.\nI\'m a member of TK Games - a student organization dedicated to game development.</string>
+
+    <string name="about_paragraph2">My favorite programming language is C\#, with which I have around 6–7 years of experience. I make games using Unity and Godot, which I\'ve started learning recently, as well as my own custom engine \(named Mari\) used for a game I\'m currently working on.\nI also produce my own music using Ableton Live, and more recently, FamiTracker.</string>
+
+    <string name="about_paragraph3">Some of my proudest projects:\n- Crispy\: CHIP-8 emulator made with MonoGame\n- The Mangler\: Web app for procedural generation of text using Markov chains\n- Flexible 6502 assembler and emulator written from scratch in C\#</string>
+
+    <string name="github_button">Check out my GitHub</string>
+
     <string name="unknown">\?</string>
 </resources>
