@@ -7,7 +7,6 @@ package edu.pwr.s266867.bmicalculator
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.Gravity
 import android.view.Menu
 import android.view.MenuItem
@@ -22,8 +21,6 @@ import edu.pwr.s266867.bmicalculator.Util.roundToDecimal
 class MainActivity : AppCompatActivity() {
 
     private lateinit var viewModel: BmiViewModel
-
-    private val defaultUnits: Units = Units.METRIC
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -82,7 +79,10 @@ class MainActivity : AppCompatActivity() {
         viewModel.units.observe(this, unitsObserver)
         viewModel.bmi.observe(this, bmiObserver)
 
-        viewModel.units.value = defaultUnits
+        viewModel.storedUnits.observe(this) { units ->
+            viewModel.units.value = units
+        }
+
         viewModel.bmi.value = null
 
         findViewById<Button>(R.id.calculateButton).setOnClickListener {

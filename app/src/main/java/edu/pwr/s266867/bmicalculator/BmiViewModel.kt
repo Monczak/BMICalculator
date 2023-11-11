@@ -1,17 +1,25 @@
 package edu.pwr.s266867.bmicalculator
 
+import android.app.Application
 import android.content.Context
 import android.util.Log
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.asLiveData
+import androidx.lifecycle.viewModelScope
 import edu.pwr.s266867.bmicalculator.Util.roundToDecimal
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import java.util.Calendar
 
-class BmiViewModel : ViewModel() {
+
+class BmiViewModel(application: Application) : AndroidViewModel(application) {
     val weight: MutableLiveData<Double> by lazy { MutableLiveData<Double>() }
     val height: MutableLiveData<Double> by lazy { MutableLiveData<Double>() }
     val units: MutableLiveData<Units> by lazy { MutableLiveData<Units>() }
     val bmi: MutableLiveData<Double?> by lazy { MutableLiveData<Double?>() }
+
+    private val dataStore = UserPreferencesRepository(application)
 
     private fun tryConvert(data: MutableLiveData<Double>, measurement: Measurement, fromUnits: Units?, toUnits: Units?) {
         if (data.value != null && fromUnits != null && toUnits != null)
@@ -29,7 +37,11 @@ class BmiViewModel : ViewModel() {
 
         tryConvert(weight, Measurement.WEIGHT, oldUnits, units.value)
         tryConvert(height, Measurement.HEIGHT, oldUnits, units.value)
+
+        viewModelScope.launch { dataStore.setUnits(units.value!!) }
     }
+
+    val storedUnits = dataStore.getUnits().asLiveData(Dispatchers.IO)
 
     fun calculateBmi() {
         if (weight.value != null && height.value != null && units.value != null) {
@@ -51,9 +63,5 @@ class BmiViewModel : ViewModel() {
             dao.insert(entry)
             Log.d("DEBUG", "Inserted 1 record")
         }
-    }
-
-    fun retrieveRecentEntries(context: Context, limit: Int = 10): Array<BmiEntry> {
-        return AppDatabase.getDatabase(context).calculationEntryDao().getRecentEntries(limit)
     }
 }
