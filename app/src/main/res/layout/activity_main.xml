@@ -61,6 +61,7 @@
                 android:layout_weight="1"
                 android:text="@string/weight_metric_unit"
                 android:textAlignment="center"
+                android:textSize="@dimen/text_small"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -96,6 +97,7 @@
                 android:layout_weight="1"
                 android:text="@string/height_metric_unit"
                 android:textAlignment="center"
+                android:textSize="@dimen/text_small"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -124,7 +126,7 @@
                     android:id="@+id/bmiValueText"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    android:autoSizeMaxTextSize="96sp"
+                    android:autoSizeMaxTextSize="@dimen/text_huge"
                     android:autoSizeTextType="uniform"
                     android:gravity="center"
                     android:text="20.0"

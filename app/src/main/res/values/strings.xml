@@ -58,7 +58,7 @@
         <item>Consider support groups or counseling to address emotional aspects of weight management.</item>
     </string-array>
 
-    <string name="about_intro">Hi! I\'m Monczak.</string>
+    <string name="about_intro">Hi! I\'m Szymon.</string>
     <string name="about_paragraph1">I\'m a passionate software and game developer, currently studying Applied Computer Science at Wroclaw University of Technology.\nI\'m a member of TK Games - a student organization dedicated to game development.</string>
 
     <string name="about_paragraph2">My favorite programming language is C\#, with which I have around 6–7 years of experience. I make games using Unity and Godot, which I\'ve started learning recently, as well as my own custom engine \(named Mari\) used for a game I\'m currently working on.\nI also produce my own music using Ableton Live, and more recently, FamiTracker.</string>
